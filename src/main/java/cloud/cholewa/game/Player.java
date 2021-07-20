@@ -9,11 +9,8 @@ public class Player {
     }
 
     public Player(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException(ErrorDict.PLAYER_CREATE_ERROR_CANT_BE_NULL);
-        }
-        if (name.equals("")) {
-            throw new IllegalArgumentException(ErrorDict.PLAYER_CREATE_ERROR_CANT_BE_EMPTY_STRING);
+        if (name == null || name.trim().equals("")) {
+            throw new IllegalArgumentException(ErrorDict.PLAYER_CREATE_ERROR);
         }
 
         this.name = name;
