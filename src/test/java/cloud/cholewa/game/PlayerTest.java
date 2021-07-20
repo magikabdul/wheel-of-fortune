@@ -4,6 +4,7 @@ import cloud.cholewa.config.ErrorDict;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerTest {
 
@@ -14,27 +15,33 @@ class PlayerTest {
         //when
 
         //then
-        try {
-            new Player(null);
-            fail("Expected Illegal Argument Exception, but was not thrown");
-        } catch (IllegalArgumentException e) {
-            assertEquals(ErrorDict.PLAYER_CREATE_ERROR_CANT_BE_NULL, e.getMessage());
-        }
+        assertThatThrownBy(() -> new Player(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorDict.PLAYER_CREATE_ERROR);
     }
 
     @Test
-    public void shouldThrow_IllegalArgumentException_WhenNameEmptyString() {
+    public void shouldThrow_IllegalArgumentException_WhenNameIsEmptyString() {
         //given
 
         //when
         //then
-        try {
-            new Player("");
-            fail("Expected Illegal Argument Exception, but was not thrown");
-        } catch (IllegalArgumentException e) {
-            assertEquals(ErrorDict.PLAYER_CREATE_ERROR_CANT_BE_EMPTY_STRING, e.getMessage());
-        }
+        assertThatThrownBy(() -> new Player(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorDict.PLAYER_CREATE_ERROR);
     }
+
+    @Test
+    public void shouldThrow_IllegalArgumentException_WhenNameIsEmptyStringButSpaces() {
+        //given
+
+        //when
+        //then
+        assertThatThrownBy(() -> new Player(" "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorDict.PLAYER_CREATE_ERROR);
+    }
+
 
     @Test
     public void shouldReturnValidPlayerName() {
