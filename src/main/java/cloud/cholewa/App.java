@@ -1,7 +1,9 @@
 package cloud.cholewa;
 
+import cloud.cholewa.game.logic.GameEngine;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("Witaj w Kole Fortuny");
+        GameEngine.run();
     }
 }
