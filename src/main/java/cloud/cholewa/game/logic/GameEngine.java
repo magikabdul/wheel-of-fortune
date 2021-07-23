@@ -1,13 +1,11 @@
 package cloud.cholewa.game.logic;
 
-import cloud.cholewa.exceptions.GameException;
 import cloud.cholewa.game.components.Player;
 
 import java.util.List;
 import java.util.Scanner;
 
 import static cloud.cholewa.common.ConsoleControl.showConsoleMessage;
-import static cloud.cholewa.game.messages.GameMessage.GAME_END;
 import static cloud.cholewa.game.messages.GameMessage.WELCOME_MESSAGE;
 
 public class GameEngine {
@@ -30,6 +28,5 @@ public class GameEngine {
         playerList.forEach(System.out::println);
 
         scanner.close();
-        throw new GameException(GAME_END);
     }
 }
