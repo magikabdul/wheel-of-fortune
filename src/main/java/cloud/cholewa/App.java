@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) {
         try {
             GameEngine.run();
-        } catch (GameException | IllegalArgumentException e) {
+        } catch (GameException | IllegalArgumentException | InputMismatchException e) {
             showConsoleMessage(e.getMessage());
         }
     }
