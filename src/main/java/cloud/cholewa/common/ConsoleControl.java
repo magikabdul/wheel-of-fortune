@@ -10,7 +10,6 @@ public class ConsoleControl {
         if (numberOfEmptyLines == 0) {
             System.out.print(message);
         } else {
-
             System.out.println(message + "\n".repeat(Math.max(0, numberOfEmptyLines)));
         }
     }
