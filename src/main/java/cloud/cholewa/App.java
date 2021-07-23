@@ -1,5 +1,6 @@
 package cloud.cholewa;
 
+import cloud.cholewa.config.ErrorDict;
 import cloud.cholewa.exceptions.GameException;
 import cloud.cholewa.game.logic.GameEngine;
 
@@ -12,6 +13,9 @@ public class App {
         try {
             GameEngine.run();
         } catch (GameException | IllegalArgumentException | InputMismatchException e) {
+            showConsoleMessage(e.getMessage());
+        } catch (Exception e) {
+            showConsoleMessage(ErrorDict.UNKNOWN_EXCEPTION);
             showConsoleMessage(e.getMessage());
         }
     }
