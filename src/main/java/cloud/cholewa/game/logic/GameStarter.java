@@ -1,24 +1,41 @@
 package cloud.cholewa.game.logic;
 
-import cloud.cholewa.game.Player;
+import cloud.cholewa.exceptions.GameException;
+import cloud.cholewa.game.components.Player;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
+import static cloud.cholewa.common.ConsoleControl.showConsoleMessage;
+import static cloud.cholewa.game.messages.GameMessage.*;
 
 public class GameStarter {
 
     public static int setNumberOfPlayers(Scanner scanner) {
-        int number;
+        boolean isNumberOfPlayersInvalid = true;
+        int number = 0;
 
-        System.out.print("Podaj liczbę graczy (2-4): ");
-        number = scanner.nextInt();
+        while (isNumberOfPlayersInvalid) {
+            showConsoleMessage(ENTER_NUMBER_OF_PLAYERS, 0);
 
-        if (number < 2 || number > 4) {
-            System.out.println("Błędna ilość graczy !");
-            System.exit(0);
+            try {
+                number = scanner.nextInt();
+
+                if (number < 2 || number > 4) {
+                    showConsoleMessage(INVALID_NUMBER_OF_PLAYERS);
+                    throw new GameException(GAME_END);
+                } else {
+                    isNumberOfPlayersInvalid = false;
+                }
+            } catch (InputMismatchException e) {
+                showConsoleMessage(ERROR_ENTERED_VALUE_IS_NOT_NUMBER);
+                scanner.nextLine();
+            }
         }
 
+        scanner.nextLine();
         return number;
     }
 
@@ -26,14 +43,10 @@ public class GameStarter {
         List<Player> playerList = new ArrayList<>();
 
         while (playerList.size() < numberOfPlayers) {
-            try {
-                System.out.print("Podaj imię gracza nr " + (playerList.size() + 1) + ": ");
-                String name = scanner.nextLine();
-                Player player = new Player(name);
-                playerList.add(player);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + "\n");
-            }
+            showConsoleMessage(ENTER_PLAYER_NAME + (playerList.size() + 1) + ": ", 0);
+            String name = scanner.nextLine();
+            Player player = new Player(name);
+            playerList.add(player);
         }
 
         return playerList;

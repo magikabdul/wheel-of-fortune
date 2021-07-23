@@ -1,38 +1,35 @@
 package cloud.cholewa.game.logic;
 
-import cloud.cholewa.game.Player;
+import cloud.cholewa.exceptions.GameException;
+import cloud.cholewa.game.components.Player;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
+import static cloud.cholewa.common.ConsoleControl.showConsoleMessage;
+import static cloud.cholewa.game.messages.GameMessage.GAME_END;
+import static cloud.cholewa.game.messages.GameMessage.WELCOME_MESSAGE;
 
 public class GameEngine {
 
     public static void run() {
-        boolean loopActive = true;
         Scanner scanner = new Scanner(System.in);
 
-        int numberOfPlayer = 0;
+        int numberOfPlayer;
         List<Player> playerList;
 
-        System.out.println("Witaj w \"Kole Fortuny\"");
+        showConsoleMessage("");
+        showConsoleMessage(WELCOME_MESSAGE, 1);
 
-        while (loopActive) {
-            try {
-                numberOfPlayer = GameStarter.setNumberOfPlayers(scanner);
-                loopActive = false;
-            } catch (InputMismatchException e) {
-                System.out.println("Wprowadzona wartość nie jest liczbą!!!\n");
-                scanner.nextLine();
-            }
-        }
-
+        numberOfPlayer = GameStarter.setNumberOfPlayers(scanner);
         playerList = (GameStarter.setPlayersName(scanner, numberOfPlayer));
 
-
+        //to remove in final version
+        showConsoleMessage("", 1);
         System.out.println("Liczba graczy: " + numberOfPlayer);
         playerList.forEach(System.out::println);
 
         scanner.close();
+        throw new GameException(GAME_END);
     }
 }
