@@ -1,4 +1,4 @@
-package cloud.cholewa.game;
+package cloud.cholewa.game.components;
 
 import cloud.cholewa.config.ErrorDict;
 

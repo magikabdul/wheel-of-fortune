@@ -1,10 +1,10 @@
-package cloud.cholewa.game;
+package cloud.cholewa.game.components;
 
 import cloud.cholewa.config.ErrorDict;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlayerTest {
 
