@@ -56,4 +56,8 @@ public class GameStarter {
 
         return playerList;
     }
+
+    public static int setNumberOfGameRounds() {
+        return 4;
+    }
 }

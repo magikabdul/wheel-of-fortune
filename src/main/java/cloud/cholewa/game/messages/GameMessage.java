@@ -11,5 +11,8 @@ public class GameMessage {
 
     public static String ENTER_PLAYER_NAME = "Podaj imię gracza nr ";
 
+    public static String BEGIN_OF_ROUND = "Rozpoczęła się runda ";
+    public static String PLAYER_TURN = "Tura gracza ";
+
     public static String GAME_END = "Gra zakończona !";
 }
