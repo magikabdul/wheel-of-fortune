@@ -45,8 +45,13 @@ public class GameStarter {
         while (playerList.size() < numberOfPlayers) {
             showConsoleMessage(ENTER_PLAYER_NAME + (playerList.size() + 1) + ": ", 0);
             String name = scanner.nextLine();
-            Player player = new Player(name);
-            playerList.add(player);
+
+            try {
+                Player player = new Player(name);
+                playerList.add(player);
+            } catch (IllegalArgumentException e) {
+                showConsoleMessage(e.getMessage(), 1);
+            }
         }
 
         return playerList;
