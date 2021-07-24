@@ -15,17 +15,16 @@ public class GameEngine {
 
         int numberOfPlayer;
         List<Player> playerList;
+        int numberOfGameRounds;
 
         showConsoleMessage("");
         showConsoleMessage(WELCOME_MESSAGE, 1);
 
-        numberOfPlayer = GameStarter.setNumberOfPlayers(scanner);
-        playerList = (GameStarter.setPlayersName(scanner, numberOfPlayer));
+        numberOfPlayer = GameStarter.getNumberOfPlayers(scanner);
+        playerList = GameStarter.getPlayersName(scanner, numberOfPlayer);
+        numberOfGameRounds = GameStarter.getNumberOfGameRounds();
 
-        //to remove in final version
-        showConsoleMessage("", 1);
-        System.out.println("Liczba graczy: " + numberOfPlayer);
-        playerList.forEach(System.out::println);
+        GameProcessor.run(playerList, numberOfGameRounds);
 
         scanner.close();
     }

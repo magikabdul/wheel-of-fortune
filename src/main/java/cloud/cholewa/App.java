@@ -19,6 +19,7 @@ public class App {
             showConsoleMessage(ErrorDict.UNKNOWN_EXCEPTION);
             showConsoleMessage(e.getMessage());
         } finally {
+            showConsoleMessage("");
             showConsoleMessage(GAME_END);
         }
     }
