@@ -13,7 +13,7 @@ import static cloud.cholewa.game.messages.GameMessage.*;
 
 public class GameStarter {
 
-    public static int setNumberOfPlayers(Scanner scanner) {
+    public static int getNumberOfPlayers(Scanner scanner) {
         boolean isNumberOfPlayersInvalid = true;
         int number = 0;
 
@@ -39,7 +39,7 @@ public class GameStarter {
         return number;
     }
 
-    public static List<Player> setPlayersName(Scanner scanner, int numberOfPlayers) {
+    public static List<Player> getPlayersName(Scanner scanner, int numberOfPlayers) {
         List<Player> playerList = new ArrayList<>();
 
         while (playerList.size() < numberOfPlayers) {
@@ -57,7 +57,7 @@ public class GameStarter {
         return playerList;
     }
 
-    public static int setNumberOfGameRounds() {
+    public static int getNumberOfGameRounds() {
         return 4;
     }
 }

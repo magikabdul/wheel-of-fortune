@@ -20,9 +20,9 @@ public class GameEngine {
         showConsoleMessage("");
         showConsoleMessage(WELCOME_MESSAGE, 1);
 
-        numberOfPlayer = GameStarter.setNumberOfPlayers(scanner);
-        playerList = GameStarter.setPlayersName(scanner, numberOfPlayer);
-        numberOfGameRounds = GameStarter.setNumberOfGameRounds();
+        numberOfPlayer = GameStarter.getNumberOfPlayers(scanner);
+        playerList = GameStarter.getPlayersName(scanner, numberOfPlayer);
+        numberOfGameRounds = GameStarter.getNumberOfGameRounds();
 
         GameProcessor.run(playerList, numberOfGameRounds);
 
