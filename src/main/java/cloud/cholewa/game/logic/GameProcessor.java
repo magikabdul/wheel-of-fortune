@@ -1,5 +1,6 @@
 package cloud.cholewa.game.logic;
 
+import cloud.cholewa.game.components.PasswordManager;
 import cloud.cholewa.game.components.Player;
 
 import java.util.List;
@@ -11,9 +12,13 @@ import static cloud.cholewa.game.messages.GameMessage.PLAYER_TURN;
 public class GameProcessor {
 
     public static void run(List<Player> players, int numberOfGameRounds) {
+        PasswordManager passwordManager = new PasswordManager();
+
         for (int i = 0; i < numberOfGameRounds; i++) {
             showConsoleMessage("");
             showConsoleMessage(BEGIN_OF_ROUND + (i + 1));
+
+            showConsoleMessage(passwordManager.getRandomPassword());
 
             players.forEach(player -> showConsoleMessage(PLAYER_TURN + player));
         }
