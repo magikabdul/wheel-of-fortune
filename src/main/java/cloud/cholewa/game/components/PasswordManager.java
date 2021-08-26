@@ -1,25 +1,42 @@
 package cloud.cholewa.game.components;
 
-import java.util.List;
-import java.util.Random;
+import cloud.cholewa.config.ErrorDict;
+
+import java.util.*;
 
 public class PasswordManager {
-    private final List<String> passwords;
+    private final List<String> passwords = new ArrayList<>();
 
     public PasswordManager() {
-        passwords = List.of(
-                "Apetyt rośnie w miarę jedzenia",
-                "Co dwie głowy, to nie jedna",
-                "Ćwiczenie czyni mistrza",
-                "Darowanemu koniowi w zęby się nie zagląda",
-                "Diabeł tkwi w szczegółach",
-                "Elektryka prąd nie tyka"
-        );
+        passwords.add("Apetyt rośnie w miarę jedzenia");
+        passwords.add("Co dwie głowy, to nie jedna");
+        passwords.add("Ćwiczenie czyni mistrza");
+        passwords.add("Darowanemu koniowi w zęby się nie zagląda");
+        passwords.add("Diabeł tkwi w szczegółach");
+        passwords.add("Elektryka prąd nie tyka");
     }
 
     public String getRandomPassword() {
         Random r = new Random();
+        int numberOfPasswords = passwords.size();
 
-        return passwords.get(r.nextInt(passwords.size()));
+        if (passwords.isEmpty()) {
+            throw new IllegalStateException(ErrorDict.NO_UNIQUE_PASSWORD);
+        }
+
+        int random = r.nextInt(numberOfPasswords);
+        String pass = passwords.get(random);
+        passwords.remove(pass);
+
+        return pass;
+    }
+
+    public void setPasswords(List<String> listOfPasswords) {
+        passwords.clear();
+        passwords.addAll(listOfPasswords);
+    }
+
+    public int getNumberOfPasswords() {
+        return passwords.size();
     }
 }
